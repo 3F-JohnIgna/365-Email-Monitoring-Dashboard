@@ -148,8 +148,3 @@ Write-Host ""
 Write-Host "  To start the app, double-click the desktop shortcut or run:" -ForegroundColor White
 Write-Host "  $BatPath" -ForegroundColor Yellow
 Write-Host ""
-if (-not (Test-Path "$InstallDir\.env")) {
-    Write-Host "  REMINDER: Configure $InstallDir\.env before first launch." -ForegroundColor Yellow
-    Write-Host "  Copy .env.example as a starting point." -ForegroundColor Yellow
-    Write-Host ""
-}
