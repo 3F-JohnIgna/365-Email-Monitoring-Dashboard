@@ -1,0 +1,64 @@
+{
+  "altoshaam@evanstrans.com|24h": {
+    "cachedAt": "2026-06-18T16:22:33.212Z",
+    "staff": {
+      "rlatus@evanstrans.com": {
+        "name": "Rachel Latus",
+        "email": "rlatus@evanstrans.com",
+        "replies": 1,
+        "lastSeen": "2026-06-18T15:38:39.000Z"
+      },
+      "ckotowski@evanstrans.com": {
+        "name": "Christina Kotowski",
+        "email": "ckotowski@evanstrans.com",
+        "replies": 18,
+        "lastSeen": "2026-06-18T16:10:47.000Z"
+      }
+    }
+  },
+  "americanrange@evanstrans.com|24h": {
+    "cachedAt": "2026-06-18T16:22:33.210Z",
+    "staff": {
+      "trobertson@evanstrans.com": {
+        "name": "Tyler Robertson",
+        "email": "trobertson@evanstrans.com",
+        "replies": 3,
+        "lastSeen": "2026-06-18T15:26:02.000Z"
+      }
+    }
+  },
+  "americanrange@evanstrans.com|3d": {
+    "cachedAt": "2026-06-18T16:23:07.684Z",
+    "staff": {
+      "mcharlesworth@evanstrans.com": {
+        "name": "Mark Charlesworth",
+        "email": "mcharlesworth@evanstrans.com",
+        "replies": 4,
+        "lastSeen": "2026-06-17T21:34:36.000Z"
+      },
+      "trobertson@evanstrans.com": {
+        "name": "Tyler Robertson",
+        "email": "trobertson@evanstrans.com",
+        "replies": 29,
+        "lastSeen": "2026-06-18T15:26:02.000Z"
+      }
+    }
+  },
+  "altoshaam@evanstrans.com|3d": {
+    "cachedAt": "2026-06-18T16:23:07.685Z",
+    "staff": {
+      "rlatus@evanstrans.com": {
+        "name": "Rachel Latus",
+        "email": "rlatus@evanstrans.com",
+        "replies": 6,
+        "lastSeen": "2026-06-18T15:38:39.000Z"
+      },
+      "ckotowski@evanstrans.com": {
+        "name": "Christina Kotowski",
+        "email": "ckotowski@evanstrans.com",
+        "replies": 100,
+        "lastSeen": "2026-06-17T20:17:08.000Z"
+      }
+    }
+  }
+}
