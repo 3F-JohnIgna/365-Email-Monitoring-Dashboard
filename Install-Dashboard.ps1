@@ -121,11 +121,25 @@ start "" "$AppUrl"
 Set-Content -Path $BatPath -Value $batContent -Encoding ASCII
 Write-Host "    Launcher created: $BatPath" -ForegroundColor Green
 
-# Desktop shortcut — use the invoking user's desktop, fall back to Public desktop
-$DesktopPath = if ($env:USERPROFILE) {
-    "$env:USERPROFILE\Desktop"
-} else {
-    [Environment]::GetFolderPath("CommonDesktopDirectory")
+# Desktop shortcut — prefer OneDrive Desktop if it exists, then local, then Public
+$DesktopPath = $null
+
+# Check OneDrive (commercial first, then personal)
+foreach ($oneDriveRoot in @($env:OneDriveCommercial, $env:OneDrive, $env:OneDriveConsumer)) {
+    if ($oneDriveRoot -and (Test-Path "$oneDriveRoot\Desktop")) {
+        $DesktopPath = "$oneDriveRoot\Desktop"
+        Write-Host "    OneDrive Desktop detected: $DesktopPath" -ForegroundColor Green
+        break
+    }
+}
+
+# Fall back to local user desktop, then Public desktop
+if (-not $DesktopPath) {
+    if ($env:USERPROFILE -and (Test-Path "$env:USERPROFILE\Desktop")) {
+        $DesktopPath = "$env:USERPROFILE\Desktop"
+    } else {
+        $DesktopPath = [Environment]::GetFolderPath("CommonDesktopDirectory")
+    }
 }
 $ShortcutPath = "$DesktopPath\365-Email-Monitoring-Dashboard.lnk"
 
