@@ -121,17 +121,27 @@ start "" "$AppUrl"
 Set-Content -Path $BatPath -Value $batContent -Encoding ASCII
 Write-Host "    Launcher created: $BatPath" -ForegroundColor Green
 
-# Desktop shortcut (public desktop so all users see it)
-$DesktopPath  = [Environment]::GetFolderPath("CommonDesktopDirectory")
+# Desktop shortcut — use the invoking user's desktop, fall back to Public desktop
+$DesktopPath = if ($env:USERPROFILE) {
+    "$env:USERPROFILE\Desktop"
+} else {
+    [Environment]::GetFolderPath("CommonDesktopDirectory")
+}
 $ShortcutPath = "$DesktopPath\365-Email-Monitoring-Dashboard.lnk"
-$WShell       = New-Object -ComObject WScript.Shell
-$Shortcut     = $WShell.CreateShortcut($ShortcutPath)
-$Shortcut.TargetPath       = $BatPath
-$Shortcut.WorkingDirectory = $InstallDir
-$Shortcut.Description      = "Launch 365 Email Monitoring Dashboard"
-$Shortcut.WindowStyle      = 1
-$Shortcut.Save()
-Write-Host "    Desktop shortcut created: $ShortcutPath" -ForegroundColor Green
+
+try {
+    $WShell   = New-Object -ComObject WScript.Shell
+    $Shortcut = $WShell.CreateShortcut($ShortcutPath)
+    $Shortcut.TargetPath       = $BatPath
+    $Shortcut.WorkingDirectory = $InstallDir
+    $Shortcut.Description      = "Launch 365 Email Monitoring Dashboard"
+    $Shortcut.WindowStyle      = 1
+    $Shortcut.Save()
+    Write-Host "    Desktop shortcut created: $ShortcutPath" -ForegroundColor Green
+} catch {
+    Write-Host "    WARNING: Could not create desktop shortcut — $_" -ForegroundColor Yellow
+    Write-Host "    You can manually create a shortcut pointing to: $BatPath" -ForegroundColor Yellow
+}
 
 # =============================================================================
 # Done
