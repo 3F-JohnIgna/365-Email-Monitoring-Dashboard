@@ -159,6 +159,19 @@ $batContent = @"
 @echo off
 title 365 Email Monitoring Dashboard
 cd /d "C:\365-Email-Monitoring-Dashboard"
+
+netstat -ano | findstr /C:":3000 " | findstr /I "LISTENING" > nul 2>&1
+set "srv3000=%ERRORLEVEL%"
+
+netstat -ano | findstr /C:":5173 " | findstr /I "LISTENING" > nul 2>&1
+set "srv5173=%ERRORLEVEL%"
+
+if "%srv3000%"=="0" if "%srv5173%"=="0" (
+    echo Servers already running. Opening app...
+    start "" "$AppUrl"
+    exit /b 0
+)
+
 echo Starting 365 Email Monitoring Dashboard...
 echo Server logs will appear below. Close this window to stop the app.
 echo.
