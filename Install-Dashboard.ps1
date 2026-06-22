@@ -86,11 +86,13 @@ if (-not (Test-Path "$InstallDir\.env")) {
 # =============================================================================
 Write-Step 3 "Checking Node.js..."
 
-$nodeVersion = & node --version 2>$null
+$nodeVersion = $null
+try { $nodeVersion = & node --version 2>$null } catch {}
+
 if ($nodeVersion) {
     Write-Host "    Node.js already installed: $nodeVersion" -ForegroundColor Green
 } else {
-    Write-Host "    Node.js not found. Installing via Winget..." -ForegroundColor Yellow
+    Write-Host "    Node.js is not installed. Installing now..." -ForegroundColor Yellow
     winget install OpenJS.NodeJS.LTS --accept-source-agreements --accept-package-agreements
     if ($LASTEXITCODE -ne 0) {
         Write-Host "    ERROR: Winget install failed. Install Node.js manually from https://nodejs.org" -ForegroundColor Red
@@ -99,7 +101,8 @@ if ($nodeVersion) {
     # Refresh PATH for current session
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" +
                 [System.Environment]::GetEnvironmentVariable("Path","User")
-    $nodeVersion = & node --version 2>$null
+    $nodeVersion = $null
+    try { $nodeVersion = & node --version 2>$null } catch {}
     Write-Host "    Node.js installed: $nodeVersion" -ForegroundColor Green
 }
 
