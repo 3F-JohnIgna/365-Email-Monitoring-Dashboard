@@ -1,10 +1,18 @@
-import { useState } from 'react'
-import { Lock } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Lock, AlertTriangle } from 'lucide-react'
 
 export default function SettingsAuthModal({ onUnlock }) {
-  const [password, setPassword] = useState('')
-  const [error, setError]       = useState('')
-  const [checking, setChecking] = useState(false)
+  const [password, setPassword]       = useState('')
+  const [error, setError]             = useState('')
+  const [checking, setChecking]       = useState(false)
+  const [configured, setConfigured]   = useState(null) // null = loading
+
+  useEffect(() => {
+    fetch('/api/auth/settings-password-status')
+      .then(r => r.json())
+      .then(d => setConfigured(d.configured))
+      .catch(() => setConfigured(false))
+  }, [])
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -29,6 +37,32 @@ export default function SettingsAuthModal({ onUnlock }) {
     } finally {
       setChecking(false)
     }
+  }
+
+  if (configured === null) {
+    return (
+      <div className="min-h-screen bg-slate-50 dark:bg-[#080f1e] flex items-center justify-center">
+        <p className="text-sm text-slate-400 dark:text-slate-500">Checking…</p>
+      </div>
+    )
+  }
+
+  if (!configured) {
+    return (
+      <div className="min-h-screen bg-slate-50 dark:bg-[#080f1e] flex items-center justify-center">
+        <div className="w-full max-w-sm bg-white dark:bg-[#0d1526] border border-red-400 dark:border-red-600 rounded-2xl p-8 shadow-xl">
+          <div className="flex flex-col items-center gap-3 mb-5">
+            <div className="p-3 rounded-xl bg-red-500/10 text-red-500">
+              <AlertTriangle size={22} />
+            </div>
+            <h1 className="text-lg font-semibold text-slate-900 dark:text-white">Reinstallation Required</h1>
+          </div>
+          <p className="text-sm text-slate-500 dark:text-slate-400 text-center leading-relaxed">
+            The application configuration could not be verified. Please run the installer again to restore access.
+          </p>
+        </div>
+      </div>
+    )
   }
 
   return (

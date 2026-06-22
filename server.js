@@ -9,7 +9,7 @@ const {
   loadMailboxConfig, saveMailboxConfig,
 } = require('./lib/config')
 const { clearTokenCache } = require('./lib/graph')
-const { verifySettingsPassword } = require('./lib/auth')
+const { hasSettingsPassword, verifySettingsPassword } = require('./lib/auth')
 const {
   getDLDashboard, getProxyCache, debugDL, getDLValidation,
 } = require('./lib/dlGraph')
@@ -78,6 +78,12 @@ app.get('/api/debug/dl/*', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message })
   }
+})
+
+// Returns whether a settings password has been configured (does not reveal the value).
+app.get('/api/auth/settings-password-status', async (_req, res) => {
+  const configured = await hasSettingsPassword()
+  res.json({ configured })
 })
 
 // Verifies the settings admin password against the hash in Windows Credential Manager.
