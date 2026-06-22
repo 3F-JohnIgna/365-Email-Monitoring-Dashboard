@@ -117,6 +117,11 @@ if ($LASTEXITCODE -ne 0) {
 Pop-Location
 Write-Host "    Dependencies installed." -ForegroundColor Green
 
+# Clear any credentials left over from a previous installation
+Write-Host "    Clearing previous credentials..." -ForegroundColor Yellow
+& node "$InstallDir\scripts\clear-credentials.js"
+Write-Host "    Done." -ForegroundColor Green
+
 # =============================================================================
 # STEP 5 — Set admin password for Settings
 # =============================================================================
