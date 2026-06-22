@@ -9,6 +9,7 @@ const {
   loadMailboxConfig, saveMailboxConfig,
 } = require('./lib/config')
 const { clearTokenCache } = require('./lib/graph')
+const { verifySettingsPassword } = require('./lib/auth')
 const {
   getDLDashboard, getProxyCache, debugDL, getDLValidation,
 } = require('./lib/dlGraph')
@@ -77,6 +78,14 @@ app.get('/api/debug/dl/*', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message })
   }
+})
+
+// Verifies the settings admin password against the hash in Windows Credential Manager.
+app.post('/api/auth/verify-settings-password', async (req, res) => {
+  const { password } = req.body
+  if (!password) return res.status(400).json({ ok: false })
+  const ok = await verifySettingsPassword(password)
+  res.json({ ok })
 })
 
 // Returns the stored Azure credentials (tenant ID and client ID only; never returns the secret).

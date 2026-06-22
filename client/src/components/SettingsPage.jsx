@@ -232,17 +232,6 @@ export default function SettingsPage({ onClose, dark, setDark }) {
                     />
                   </div>
 
-                  {dl.is_valid_dl !== false && dl.proxy_name && (
-                    <span className="text-xs text-cyan-500 shrink-0 hidden sm:block">
-                      Proxy: {dl.proxy_name}
-                    </span>
-                  )}
-                  {dl.is_valid_dl !== false && !dl.proxy_name && (
-                    <span className="text-xs text-slate-400 italic shrink-0 hidden sm:block">
-                      Proxy resolves on first load
-                    </span>
-                  )}
-
                   <button
                     onClick={() => removeDL(idx)}
                     className="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/40 transition-colors shrink-0"

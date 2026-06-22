@@ -3,6 +3,7 @@ import { Settings, RefreshCw, Moon, Sun, Mail, List } from 'lucide-react'
 import DLCard from './components/DLCard'
 import UserLeaderboard from './components/UserLeaderboard'
 import SettingsPage from './components/SettingsPage'
+import SettingsAuthModal from './components/SettingsAuthModal'
 import MailboxCard from './components/MailboxCard'
 import MailboxDetail from './components/MailboxDetail'
 
@@ -35,8 +36,12 @@ function useDarkMode() {
 // Root application component that manages page navigation, theme, settings visibility, DL dashboard state, mailbox list state, and mailbox detail state; handles auto-refresh timers for both pages.
 export default function App() {
   const [dark, setDark] = useDarkMode()
-  const [page, setPage]               = useState('dl')
-  const [showSettings, setShowSettings] = useState(false)
+  const [page, setPage]                   = useState('dl')
+  const [showSettings, setShowSettings]   = useState(false)
+  const [settingsUnlocked, setSettingsUnlocked] = useState(false)
+
+  function openSettings() { setShowSettings(true); setSettingsUnlocked(false) }
+  function closeSettings() { setShowSettings(false); setSettingsUnlocked(false); fetchData() }
 
   // ── DL state ──────────────────────────────────────────────────────────────
   const [dlWindow, setDlWindow]         = useState('24h')
@@ -139,8 +144,12 @@ export default function App() {
   const users       = data?.top_users || []
   const totalEmails = dls.reduce((s, d) => s + (d.total_emails || 0), 0)
 
-  if (showSettings) {
-    return <SettingsPage onClose={() => { setShowSettings(false); fetchData() }} dark={dark} setDark={setDark} />
+  if (showSettings && !settingsUnlocked) {
+    return <SettingsAuthModal onUnlock={() => setSettingsUnlocked(true)} />
+  }
+
+  if (showSettings && settingsUnlocked) {
+    return <SettingsPage onClose={closeSettings} dark={dark} setDark={setDark} />
   }
 
   // Merge summary (load_level, sparkline) with detail data for the detail panel
@@ -185,7 +194,7 @@ export default function App() {
               {dark ? <Sun size={15} /> : <Moon size={15} />}
             </button>
             <button
-              onClick={() => setShowSettings(true)}
+              onClick={openSettings}
               className="p-2 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
               <Settings size={15} />
@@ -310,7 +319,7 @@ export default function App() {
             {!mbLoading && !mbError && mbData.length === 0 && (
               <div className="text-center py-20 text-slate-400 dark:text-slate-500 text-sm">
                 No mailboxes configured.{' '}
-                <button onClick={() => setShowSettings(true)} className="text-cyan-500 underline">
+                <button onClick={openSettings} className="text-cyan-500 underline">
                   Open Settings
                 </button>{' '}
                 to add some.
@@ -368,7 +377,7 @@ export default function App() {
             {!loading && !error && dls.length === 0 && (
               <div className="text-center py-20 text-slate-400 dark:text-slate-500 text-sm">
                 No distribution lists configured.{' '}
-                <button onClick={() => setShowSettings(true)} className="text-cyan-500 underline">
+                <button onClick={openSettings} className="text-cyan-500 underline">
                   Open Settings
                 </button>{' '}
                 to add some.

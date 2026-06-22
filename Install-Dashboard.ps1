@@ -10,9 +10,25 @@ $ExtractTemp = "$env:TEMP\365-EMD-extract"
 $BatPath     = "$InstallDir\365-Email-Monitoring-Dashboard.bat"
 $AppUrl      = "http://localhost:5173"
 
+# --- Banner ---
+Write-Host ""
+Write-Host "  ╔══════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
+Write-Host "  ║       365 Email Monitoring Dashboard  —  Installer      ║" -ForegroundColor Cyan
+Write-Host "  ║                    3Fold IT, LLC                        ║" -ForegroundColor Cyan
+Write-Host "  ╚══════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
+Write-Host ""
+
+# --- Install confirmation ---
+$confirm = Read-Host "  Do you want to install 365 Email Monitoring Dashboard? (Y/N)"
+if ($confirm -notmatch '^[Yy]$') {
+    Write-Host ""
+    Write-Host "  Installation cancelled." -ForegroundColor Yellow
+    exit 0
+}
+
 function Write-Step($n, $msg) {
     Write-Host ""
-    Write-Host "[$n/5] $msg" -ForegroundColor Cyan
+    Write-Host "[$n/6] $msg" -ForegroundColor Cyan
 }
 
 # --- Require Administrator ---
@@ -102,9 +118,41 @@ Pop-Location
 Write-Host "    Dependencies installed." -ForegroundColor Green
 
 # =============================================================================
-# STEP 5 — Create launcher .bat + desktop shortcut
+# STEP 5 — Set admin password for Settings
 # =============================================================================
-Write-Step 5 "Creating launcher and desktop shortcut..."
+Write-Step 5 "Setting admin password for Settings access..."
+
+$pwMatch = $false
+while (-not $pwMatch) {
+    $pw1 = Read-Host "  Enter admin password" -AsSecureString
+    $pw2 = Read-Host "  Confirm admin password" -AsSecureString
+
+    $pw1Plain = [Runtime.InteropServices.Marshal]::PtrToStringAuto(
+                    [Runtime.InteropServices.Marshal]::SecureStringToBSTR($pw1))
+    $pw2Plain = [Runtime.InteropServices.Marshal]::PtrToStringAuto(
+                    [Runtime.InteropServices.Marshal]::SecureStringToBSTR($pw2))
+
+    if ($pw1Plain -ne $pw2Plain) {
+        Write-Host "    Passwords do not match — try again." -ForegroundColor Yellow
+    } elseif ($pw1Plain.Length -lt 4) {
+        Write-Host "    Password must be at least 4 characters — try again." -ForegroundColor Yellow
+    } else {
+        $pwMatch = $true
+    }
+}
+
+# Pipe password via stdin so it never appears as a process argument
+$pw1Plain | & node "$InstallDir\scripts\set-password.js"
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "    ERROR: Failed to store password in Windows Credential Manager." -ForegroundColor Red
+    exit 1
+}
+Write-Host "    Admin password stored in Windows Credential Manager." -ForegroundColor Green
+
+# =============================================================================
+# STEP 6 — Create launcher .bat + desktop shortcut
+# =============================================================================
+Write-Step 6 "Creating launcher and desktop shortcut..."
 
 # .bat file
 $batContent = @"
