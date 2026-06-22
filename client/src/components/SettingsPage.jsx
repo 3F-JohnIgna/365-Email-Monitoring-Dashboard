@@ -303,6 +303,9 @@ export default function SettingsPage({ onClose, dark, setDark }) {
               <input
                 type="password"
                 placeholder={creds.has_secret ? '••••••••  (stored in Credential Manager)' : 'Enter client secret…'}
+                autoComplete="off"
+                data-1p-ignore
+                data-lpignore="true"
                 value={secret}
                 onChange={e => setSecret(e.target.value)}
                 className="w-full bg-white dark:bg-[#0d1526] border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-cyan-500/50"

@@ -79,11 +79,14 @@ export default function SettingsAuthModal({ onUnlock }) {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4" autoComplete="off">
           <input
             type="password"
             placeholder="Admin password"
             autoFocus
+            autoComplete="off"
+            data-1p-ignore
+            data-lpignore="true"
             value={password}
             onChange={e => setPassword(e.target.value)}
             className="w-full bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-cyan-500/50 text-slate-900 dark:text-white"
