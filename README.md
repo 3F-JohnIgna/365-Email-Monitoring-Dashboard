@@ -74,6 +74,25 @@ The app opens automatically at **http://localhost:5173** after a few seconds.
 
 ---
 
+## Uninstall
+
+Open **PowerShell as Administrator** and run:
+
+```powershell
+irm https://raw.githubusercontent.com/3F-JohnIgna/365-Email-Monitoring-Dashboard/main/Uninstall-Dashboard.ps1 | iex
+```
+
+The uninstaller will:
+
+1. Stop any running servers on ports 3000 and 5173
+2. Remove all stored credentials from Windows Credential Manager
+3. Delete the desktop shortcut
+4. Delete the `C:\365-Email-Monitoring-Dashboard` folder
+
+A confirmation prompt is shown before anything is removed.
+
+---
+
 ## Ports Used
 
 | Service | Port |
