@@ -1,2 +1,52 @@
 {
+  "amerequip@evanstrans.com": {
+    "proxy": "bbauer@evanstrans.com",
+    "proxy_name": "Brett Bauer",
+    "resolvedAt": "2026-06-19T14:04:09.629Z"
+  },
+  "alo@evanstrans.com": {
+    "proxy": "rlatus@evanstrans.com",
+    "proxy_name": "Rachel Latus",
+    "resolvedAt": "2026-06-19T14:04:09.653Z"
+  },
+  "americanseating@evanstrans.com": {
+    "proxy": "jpietrzak@EVANSTRANS.com",
+    "proxy_name": "Joe Pietrzak",
+    "resolvedAt": "2026-06-19T14:04:09.596Z"
+  },
+  "ajmfg@evanstrans.com": {
+    "proxy": "tmaaser@EVANSTRANS.com",
+    "proxy_name": "Tracy Maaser",
+    "resolvedAt": "2026-06-19T14:04:09.637Z"
+  },
+  "34degrees@evanstrans.com": {
+    "proxy": "mcharlesworth@evanstrans.com",
+    "proxy_name": "Mark Charlesworth",
+    "resolvedAt": "2026-06-19T14:04:09.605Z"
+  },
+  "amstedrail@EVANSTrans.com": {
+    "proxy": "ssimms@EVANSTRANS.com",
+    "proxy_name": "Steve Simms",
+    "resolvedAt": "2026-06-19T14:04:09.607Z"
+  },
+  "AlliedMechanical@evanstrans.com": {
+    "proxy": "tmaaser@EVANSTRANS.com",
+    "proxy_name": "Tracy Maaser",
+    "resolvedAt": "2026-06-19T14:04:09.626Z"
+  },
+  "ACWholesalers@evanstrans.com": {
+    "proxy": "ebollis@EVANSTRANS.com",
+    "proxy_name": "Eric Bollis",
+    "resolvedAt": "2026-06-19T14:04:09.583Z"
+  },
+  "abcpolymer@evanstrans.com": {
+    "proxy": "ebollis@EVANSTRANS.com",
+    "proxy_name": "Eric Bollis",
+    "resolvedAt": "2026-06-19T14:04:09.586Z"
+  },
+  "adc@evanstrans.com": {
+    "proxy": "ebollis@EVANSTRANS.com",
+    "proxy_name": "Eric Bollis",
+    "resolvedAt": "2026-06-19T14:04:09.593Z"
+  }
 }

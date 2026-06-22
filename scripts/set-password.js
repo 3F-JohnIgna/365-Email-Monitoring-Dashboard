@@ -14,7 +14,7 @@ process.stdin.on('end', () => {
   }
   setSettingsPassword(password)
     .then(() => {
-      console.log('Settings password stored in Windows Credential Manager.')
+      console.log('Password saved.')
       process.exit(0)
     })
     .catch(err => {

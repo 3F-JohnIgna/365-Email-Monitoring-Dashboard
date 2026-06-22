@@ -1,2 +1,384 @@
 {
+  "AmericanRange@evanstrans.com": {
+    "cachedAt": "2026-05-22T14:03:34.429Z",
+    "members": [],
+    "isValidDL": false,
+    "errorReason": "Not found as a Distribution List"
+  },
+  "altoshaam@EVANSTrans.com": {
+    "cachedAt": "2026-06-16T20:44:08.200Z",
+    "members": [],
+    "isValidDL": false,
+    "errorReason": "Not found as a Distribution List"
+  },
+  "amerequip@evanstrans.com": {
+    "cachedAt": "2026-06-19T14:04:09.629Z",
+    "members": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "e30c7b5b-f189-409b-a630-3be9522092d1",
+        "displayName": "Brett Bauer",
+        "mail": "bbauer@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "2e5a208f-dbd2-4ef7-aea0-6bc0ffe7a00a",
+        "displayName": "Eric Bollis",
+        "mail": "ebollis@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "d75dad90-32d4-4a87-9577-d621e0d6eec5",
+        "displayName": "Anita Green",
+        "mail": "AGreen@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "24813a1b-b764-47b3-9bce-228707ef1176",
+        "displayName": "Brett Fortkamp",
+        "mail": "bfortkamp@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "36f44e96-34b9-49e6-9ffe-d63a88e1ba79",
+        "displayName": "Wes Cuomo",
+        "mail": "wcuomo@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "56bae935-c34d-4c46-82fa-14581a921c45",
+        "displayName": "Tyler Buechs",
+        "mail": "tbuechs@evanstrans.com"
+      }
+    ],
+    "isValidDL": true,
+    "errorReason": null
+  },
+  "alo@evanstrans.com": {
+    "cachedAt": "2026-06-19T14:04:09.652Z",
+    "members": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "c411577e-b810-4a6a-838f-e8dd6f6e6e94",
+        "displayName": "Rachel Latus",
+        "mail": "rlatus@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "36f44e96-34b9-49e6-9ffe-d63a88e1ba79",
+        "displayName": "Wes Cuomo",
+        "mail": "wcuomo@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "eaad9213-e492-4f9d-ab9e-4ea38aa4be86",
+        "displayName": "Jeremy Baker",
+        "mail": "jbaker@evanstrans.com"
+      }
+    ],
+    "isValidDL": true,
+    "errorReason": null
+  },
+  "americanseating@evanstrans.com": {
+    "cachedAt": "2026-06-19T14:04:09.595Z",
+    "members": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "080cdd01-4695-4d97-b58a-dc42dd1ca63f",
+        "displayName": "Joe Pietrzak",
+        "mail": "jpietrzak@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "728b8320-12c8-4fec-846a-f6730d7385e3",
+        "displayName": "Tracy Maaser",
+        "mail": "tmaaser@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "c27270c1-54a5-40c5-a8dd-2a411175a0dd",
+        "displayName": "Mike Stiglich",
+        "mail": "mstiglich@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "36f44e96-34b9-49e6-9ffe-d63a88e1ba79",
+        "displayName": "Wes Cuomo",
+        "mail": "wcuomo@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "56bae935-c34d-4c46-82fa-14581a921c45",
+        "displayName": "Tyler Buechs",
+        "mail": "tbuechs@evanstrans.com"
+      }
+    ],
+    "isValidDL": true,
+    "errorReason": null
+  },
+  "ajmfg@evanstrans.com": {
+    "cachedAt": "2026-06-19T14:04:09.636Z",
+    "members": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "728b8320-12c8-4fec-846a-f6730d7385e3",
+        "displayName": "Tracy Maaser",
+        "mail": "tmaaser@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "2e5a208f-dbd2-4ef7-aea0-6bc0ffe7a00a",
+        "displayName": "Eric Bollis",
+        "mail": "ebollis@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "7b3a4251-08d9-43c4-a5e2-697d6ed7983e",
+        "displayName": "Spencer Walker",
+        "mail": "swalker@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "36f44e96-34b9-49e6-9ffe-d63a88e1ba79",
+        "displayName": "Wes Cuomo",
+        "mail": "wcuomo@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "f17ea3cd-0ed1-4c95-a974-9d2d26ad2f2a",
+        "displayName": "Cassie Schuler",
+        "mail": "cschuler@evanstrans.com"
+      }
+    ],
+    "isValidDL": true,
+    "errorReason": null
+  },
+  "34degrees@evanstrans.com": {
+    "cachedAt": "2026-06-19T14:04:09.604Z",
+    "members": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "dcd442f4-ecbc-4e3e-8ab5-fd28f75e76df",
+        "displayName": "Mark Charlesworth",
+        "mail": "mcharlesworth@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "c27270c1-54a5-40c5-a8dd-2a411175a0dd",
+        "displayName": "Mike Stiglich",
+        "mail": "mstiglich@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "a97737c6-5229-477a-a3ec-b9aee6367358",
+        "displayName": "Delaney McAdams",
+        "mail": "dmcadams@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "b6e11128-12c1-484d-9eb6-2f3054bed09e",
+        "displayName": "Katrina Haseleu",
+        "mail": "khaseleu@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "24dfbfc0-064d-4a21-ada5-d7fb68fdb39c",
+        "displayName": "Tyler Robertson",
+        "mail": "trobertson@evanstrans.com"
+      }
+    ],
+    "isValidDL": true,
+    "errorReason": null
+  },
+  "amstedrail@EVANSTrans.com": {
+    "cachedAt": "2026-06-19T14:04:09.606Z",
+    "members": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "42b015fa-8988-465d-83a3-795ccd0a221c",
+        "displayName": "Steve Simms",
+        "mail": "ssimms@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "3b4f0765-cd31-40c0-9a1d-8d85ab4cd78a",
+        "displayName": "Derek Wooten",
+        "mail": "dwooten@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "8ab2ed37-ff12-4f4e-aebc-ed094d956efa",
+        "displayName": "Melissa Reich",
+        "mail": "mreich@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "632fe0cb-5b59-4b17-87ea-b128ac841c51",
+        "displayName": "Jacob Yount",
+        "mail": "jyount@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "eaad9213-e492-4f9d-ab9e-4ea38aa4be86",
+        "displayName": "Jeremy Baker",
+        "mail": "jbaker@evanstrans.com"
+      }
+    ],
+    "isValidDL": true,
+    "errorReason": null
+  },
+  "AlliedMechanical@evanstrans.com": {
+    "cachedAt": "2026-06-19T14:04:09.625Z",
+    "members": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "728b8320-12c8-4fec-846a-f6730d7385e3",
+        "displayName": "Tracy Maaser",
+        "mail": "tmaaser@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "dcd442f4-ecbc-4e3e-8ab5-fd28f75e76df",
+        "displayName": "Mark Charlesworth",
+        "mail": "mcharlesworth@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "c27270c1-54a5-40c5-a8dd-2a411175a0dd",
+        "displayName": "Mike Stiglich",
+        "mail": "mstiglich@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "36f44e96-34b9-49e6-9ffe-d63a88e1ba79",
+        "displayName": "Wes Cuomo",
+        "mail": "wcuomo@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "412818cc-88ab-4b90-be91-cd792fbcc5bd",
+        "displayName": "Heather Thew",
+        "mail": "hthew@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "56bae935-c34d-4c46-82fa-14581a921c45",
+        "displayName": "Tyler Buechs",
+        "mail": "tbuechs@evanstrans.com"
+      }
+    ],
+    "isValidDL": true,
+    "errorReason": null
+  },
+  "ACWholesalers@evanstrans.com": {
+    "cachedAt": "2026-06-19T14:04:09.582Z",
+    "members": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "2e5a208f-dbd2-4ef7-aea0-6bc0ffe7a00a",
+        "displayName": "Eric Bollis",
+        "mail": "ebollis@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "9e232e2d-1245-4b69-9d21-fdb3fa633f50",
+        "displayName": "Stephanie Applonie",
+        "mail": "sapplonie@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "632fe0cb-5b59-4b17-87ea-b128ac841c51",
+        "displayName": "Jacob Yount",
+        "mail": "jyount@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "f17ea3cd-0ed1-4c95-a974-9d2d26ad2f2a",
+        "displayName": "Cassie Schuler",
+        "mail": "cschuler@evanstrans.com"
+      }
+    ],
+    "isValidDL": true,
+    "errorReason": null
+  },
+  "abcpolymer@evanstrans.com": {
+    "cachedAt": "2026-06-19T14:04:09.586Z",
+    "members": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "2e5a208f-dbd2-4ef7-aea0-6bc0ffe7a00a",
+        "displayName": "Eric Bollis",
+        "mail": "ebollis@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "42b015fa-8988-465d-83a3-795ccd0a221c",
+        "displayName": "Steve Simms",
+        "mail": "ssimms@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "7b3a4251-08d9-43c4-a5e2-697d6ed7983e",
+        "displayName": "Spencer Walker",
+        "mail": "swalker@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "632fe0cb-5b59-4b17-87ea-b128ac841c51",
+        "displayName": "Jacob Yount",
+        "mail": "jyount@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "f17ea3cd-0ed1-4c95-a974-9d2d26ad2f2a",
+        "displayName": "Cassie Schuler",
+        "mail": "cschuler@evanstrans.com"
+      }
+    ],
+    "isValidDL": true,
+    "errorReason": null
+  },
+  "adc@evanstrans.com": {
+    "cachedAt": "2026-06-19T14:04:09.592Z",
+    "members": [
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "2e5a208f-dbd2-4ef7-aea0-6bc0ffe7a00a",
+        "displayName": "Eric Bollis",
+        "mail": "ebollis@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "42b015fa-8988-465d-83a3-795ccd0a221c",
+        "displayName": "Steve Simms",
+        "mail": "ssimms@EVANSTRANS.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "c27270c1-54a5-40c5-a8dd-2a411175a0dd",
+        "displayName": "Mike Stiglich",
+        "mail": "mstiglich@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "24813a1b-b764-47b3-9bce-228707ef1176",
+        "displayName": "Brett Fortkamp",
+        "mail": "bfortkamp@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "632fe0cb-5b59-4b17-87ea-b128ac841c51",
+        "displayName": "Jacob Yount",
+        "mail": "jyount@evanstrans.com"
+      },
+      {
+        "@odata.type": "#microsoft.graph.user",
+        "id": "4c2d173a-27bd-4989-ad9b-212576049769",
+        "displayName": "Nixon Blackman",
+        "mail": "nblackman@evanstrans.com"
+      }
+    ],
+    "isValidDL": true,
+    "errorReason": null
+  }
 }

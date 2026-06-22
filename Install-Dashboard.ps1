@@ -144,10 +144,10 @@ while (-not $pwMatch) {
 # Pipe password via stdin so it never appears as a process argument
 $pw1Plain | & node "$InstallDir\scripts\set-password.js"
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "    ERROR: Failed to store password in Windows Credential Manager." -ForegroundColor Red
+    Write-Host "    ERROR: Password could not be saved." -ForegroundColor Red
     exit 1
 }
-Write-Host "    Admin password stored in Windows Credential Manager." -ForegroundColor Green
+Write-Host "    Password saved." -ForegroundColor Green
 
 # =============================================================================
 # STEP 6 — Create launcher .bat + desktop shortcut
