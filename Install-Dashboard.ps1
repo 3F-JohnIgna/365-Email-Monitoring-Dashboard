@@ -241,3 +241,13 @@ Write-Host ""
 Write-Host "  To start the app, double-click the desktop shortcut or run:" -ForegroundColor White
 Write-Host "  $BatPath" -ForegroundColor Yellow
 Write-Host ""
+
+# --- Clear PowerShell command history ---
+Clear-History
+try {
+    $historyFile = (Get-PSReadLineOption).HistorySavePath
+    if (Test-Path $historyFile) {
+        Clear-Content $historyFile -Force
+    }
+} catch {}
+
