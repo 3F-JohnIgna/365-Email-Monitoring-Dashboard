@@ -2,7 +2,7 @@
 'use strict'
 
 const SERVICE  = 'DLMonitorDashboard'
-const ACCOUNTS = ['client_secret', 'settings_password']
+const ACCOUNTS = ['client_secret', 'settings_password', 'jwt_secret']
 
 async function main() {
   let kt

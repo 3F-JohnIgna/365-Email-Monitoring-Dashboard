@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Settings, RefreshCw, Moon, Sun, Mail, List } from 'lucide-react'
+import { Settings, RefreshCw, Moon, Sun, Mail, List, LogOut } from 'lucide-react'
 import DLCard from './components/DLCard'
 import UserLeaderboard from './components/UserLeaderboard'
 import SettingsPage from './components/SettingsPage'
 import SettingsAuthModal from './components/SettingsAuthModal'
+import LoginPage from './components/LoginPage'
 import MailboxCard from './components/MailboxCard'
 import MailboxDetail from './components/MailboxDetail'
 
@@ -36,6 +37,25 @@ function useDarkMode() {
 // Root application component that manages page navigation, theme, settings visibility, DL dashboard state, mailbox list state, and mailbox detail state; handles auto-refresh timers for both pages.
 export default function App() {
   const [dark, setDark] = useDarkMode()
+
+  // ── Auth state ────────────────────────────────────────────────────────────
+  const [authUser, setAuthUser]       = useState(null)
+  const [authLoading, setAuthLoading] = useState(true)
+
+  useEffect(() => {
+    fetch('/auth/me')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(user => { setAuthUser(user); setAuthLoading(false) })
+      .catch(() => { setAuthUser(null); setAuthLoading(false) })
+  }, [])
+
+  async function handleLogout() {
+    await fetch('/auth/logout', { method: 'POST' })
+    setAuthUser(null)
+    setShowSettings(false)
+    setSettingsUnlocked(false)
+  }
+
   const [page, setPage]                   = useState('dl')
   const [showSettings, setShowSettings]   = useState(false)
   const [settingsUnlocked, setSettingsUnlocked] = useState(false)
@@ -144,6 +164,18 @@ export default function App() {
   const users       = data?.top_users || []
   const totalEmails = dls.reduce((s, d) => s + (d.total_emails || 0), 0)
 
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-slate-50 dark:bg-[#080f1e] flex items-center justify-center">
+        <p className="text-sm text-slate-400 dark:text-slate-500">Loading…</p>
+      </div>
+    )
+  }
+
+  if (!authUser) {
+    return <LoginPage onLogin={user => setAuthUser(user)} />
+  }
+
   if (showSettings && !settingsUnlocked) {
     return <SettingsAuthModal onUnlock={() => setSettingsUnlocked(true)} />
   }
@@ -187,6 +219,23 @@ export default function App() {
 
           {/* Right — global controls */}
           <div className="flex items-center gap-1">
+            {/* Logged-in user */}
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 mr-1">
+              <div className="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-500 flex items-center justify-center text-[10px] font-bold uppercase shrink-0">
+                {authUser.name?.[0] || authUser.email?.[0] || '?'}
+              </div>
+              <div className="flex flex-col leading-none">
+                <span className="text-xs font-medium text-slate-700 dark:text-slate-200 max-w-[140px] truncate">
+                  {authUser.name || authUser.email}
+                </span>
+                {authUser.name && (
+                  <span className="text-[10px] text-slate-400 dark:text-slate-500 max-w-[140px] truncate">
+                    {authUser.email}
+                  </span>
+                )}
+              </div>
+            </div>
+
             <button
               onClick={() => setDark(d => !d)}
               className="p-2 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
@@ -198,6 +247,13 @@ export default function App() {
               className="p-2 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
               <Settings size={15} />
+            </button>
+            <button
+              onClick={handleLogout}
+              title="Sign out"
+              className="p-2 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/40 transition-colors"
+            >
+              <LogOut size={15} />
             </button>
           </div>
         </div>

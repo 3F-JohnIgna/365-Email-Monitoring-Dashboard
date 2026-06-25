@@ -1,8 +1,9 @@
 'use strict'
 require('dotenv').config()
 
-const express = require('express')
-const path    = require('path')
+const express      = require('express')
+const path         = require('path')
+const cookieParser = require('cookie-parser')
 const {
   getAllCredentials, getCredentials, saveCredentials,
   loadDLConfig, saveDLConfig,
@@ -10,6 +11,7 @@ const {
 } = require('./lib/config')
 const { clearTokenCache } = require('./lib/graph')
 const { hasSettingsPassword, verifySettingsPassword } = require('./lib/auth')
+const { hasUsers, authenticateUser, signToken, verifyToken } = require('./lib/localAuth')
 const {
   getDLDashboard, getProxyCache, debugDL, getDLValidation,
 } = require('./lib/dlGraph')
@@ -19,8 +21,65 @@ const app  = express()
 const PORT = process.env.PORT || 3000
 
 app.use(express.json())
+app.use(cookieParser())
 
 const VALID_WINDOWS = new Set(['24h', '3d', '7d'])
+
+// ── Auth middleware ───────────────────────────────────────────────────────────
+
+async function requireAuth(req, res, next) {
+  const token = req.cookies?.auth_token
+  if (!token) return res.status(401).json({ error: 'Unauthorized' })
+  try {
+    req.user = await verifyToken(token)
+    next()
+  } catch {
+    res.status(401).json({ error: 'Unauthorized' })
+  }
+}
+
+// ── Auth routes ───────────────────────────────────────────────────────────────
+
+// Returns whether any users have been created yet.
+app.get('/auth/setup-status', (_req, res) => {
+  res.json({ hasUsers: hasUsers() })
+})
+
+// Authenticates a user and issues a signed JWT in an httpOnly cookie.
+app.post('/auth/login', async (req, res) => {
+  const { email, password } = req.body
+  if (!email || !password) return res.status(400).json({ error: 'Email and password required.' })
+  const user = authenticateUser(email, password)
+  if (!user) return res.status(401).json({ error: 'Invalid email or password.' })
+  const token = await signToken(user)
+  res.cookie('auth_token', token, {
+    httpOnly: true,
+    sameSite: 'strict',
+    maxAge:   8 * 60 * 60 * 1000,
+  })
+  res.json({ ok: true, user: { email: user.email, name: user.name, oid: user.oid } })
+})
+
+// Clears the auth cookie.
+app.post('/auth/logout', (_req, res) => {
+  res.clearCookie('auth_token', { httpOnly: true, sameSite: 'strict' })
+  res.json({ ok: true })
+})
+
+// Returns the current user from the JWT; used by the frontend to restore session on page load.
+app.get('/auth/me', async (req, res) => {
+  const token = req.cookies?.auth_token
+  if (!token) return res.status(401).json({ error: 'Unauthorized' })
+  try {
+    const user = await verifyToken(token)
+    res.json({ email: user.email, name: user.name, oid: user.oid })
+  } catch {
+    res.status(401).json({ error: 'Unauthorized' })
+  }
+})
+
+// ── Protect all /api/* routes ─────────────────────────────────────────────────
+app.use('/api', requireAuth)
 
 // ── API routes ────────────────────────────────────────────────────────────────
 

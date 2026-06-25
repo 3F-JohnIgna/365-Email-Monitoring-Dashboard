@@ -28,7 +28,7 @@ if ($confirm -notmatch '^[Yy]$') {
 
 function Write-Step($n, $msg) {
     Write-Host ""
-    Write-Host "[$n/6] $msg" -ForegroundColor Cyan
+    Write-Host "[$n/7] $msg" -ForegroundColor Cyan
 }
 
 # --- Require Administrator ---
@@ -158,9 +158,43 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host "    Password saved." -ForegroundColor Green
 
 # =============================================================================
-# STEP 6 — Create launcher .bat + desktop shortcut
+# STEP 6 — Create initial app user
 # =============================================================================
-Write-Step 6 "Creating launcher and desktop shortcut..."
+Write-Step 6 "Creating initial user account..."
+
+$userEmail = Read-Host "  Enter user email address"
+$userName  = Read-Host "  Enter display name"
+
+$userPwMatch = $false
+while (-not $userPwMatch) {
+    $userPw1 = Read-Host "  Enter user password" -AsSecureString
+    $userPw2 = Read-Host "  Confirm user password" -AsSecureString
+
+    $userPw1Plain = [Runtime.InteropServices.Marshal]::PtrToStringAuto(
+                        [Runtime.InteropServices.Marshal]::SecureStringToBSTR($userPw1))
+    $userPw2Plain = [Runtime.InteropServices.Marshal]::PtrToStringAuto(
+                        [Runtime.InteropServices.Marshal]::SecureStringToBSTR($userPw2))
+
+    if ($userPw1Plain -ne $userPw2Plain) {
+        Write-Host "    Passwords do not match — try again." -ForegroundColor Yellow
+    } elseif ($userPw1Plain.Length -lt 4) {
+        Write-Host "    Password must be at least 4 characters — try again." -ForegroundColor Yellow
+    } else {
+        $userPwMatch = $true
+    }
+}
+
+$userPw1Plain | & node "$InstallDir\scripts\create-user.js" $userEmail $userName
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "    ERROR: Failed to create user." -ForegroundColor Red
+    exit 1
+}
+Write-Host "    User account created." -ForegroundColor Green
+
+# =============================================================================
+# STEP 7 — Create launcher .bat + desktop shortcut
+# =============================================================================
+Write-Step 7 "Creating launcher and desktop shortcut..."
 
 # .bat file
 $batContent = @"
